@@ -107,9 +107,12 @@ RD_bac.SetVirturalWingPlaneRelative2Wing([1,0,0,0,1,0,0,0,1])
 rudder_bac.SetVirturalWingPlaneRelative2Wing([0,1,0,-1,0,0,0,0,1])
 tail_bac.  SetVirturalWingPlaneRelative2Wing([1,0,0,0,1,0,0,0,1])  # Rot Y, -90    Rot  Z -90
 
-tail_Rotation_matrix_VP2W = np.matrix([[0, 0,-1],\
-                                       [1, 0, 0],\
-                                       [0,-1, 0]])
+# tail_Rotation_matrix_VP2W = np.matrix([[0, 0,-1],\
+                                       # [1, 0, 0],\
+                                       # [0,-1, 0]])
+tail_Rotation_matrix_VP2W = np.matrix([[0, 0, -1],\
+                                       [0, 1, 0],\
+                                       [1, 0, 0]])
 
 R_d         = np.matrix([[1, 0, 0],\
                          [0, 1, 0],\
@@ -692,9 +695,9 @@ while flapper.step(timestep) != -1:
     JUSTFOTAILRDEBUG = 1
     
     tail_t_shift_in_local = np.array([tail_bac. X_pos_t, tail_bac. Y_pos_t, 0]).squeeze()
+    print('tail_t_shift_in_local:',tail_t_shift_in_local)
     
-    
-    tail_t_shift_raw      = -np.array(np.matmul(np.transpose(tail_Rotation_matrix_VP2W), tail_t_shift_in_local)).squeeze()
+    tail_t_shift_raw      = np.array(np.matmul(np.transpose(tail_Rotation_matrix_VP2W), tail_t_shift_in_local)).squeeze()
     print('tail_t_shift_raw:',tail_t_shift_raw)
     tail_t_shift = np.array(np.matmul(tail_Rotation_matrix, tail_t_shift_raw)).squeeze().tolist()
     # LU_drag = np.array(np.sum(rudder_bac. F_t_drag, axis=0)).squeeze()
