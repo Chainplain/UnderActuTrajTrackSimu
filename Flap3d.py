@@ -927,7 +927,7 @@ while flapper.step(timestep) != -1:
         # torsion_spring_yaw_offset   =  K_yaw * SO3_Attitude_Controller.u[2,0]
         
         
-        StrokeFreq =  13
+
         # K_roll_mix = 0.5
         # roll_rudder_amplitude = -K_roll_mix * SO3_Attitude_Controller.u[0,0]
         # if (roll_rudder_amplitude > 0.8):
@@ -937,7 +937,8 @@ while flapper.step(timestep) != -1:
                 # roll_rudder_amplitude = -0.8
                 
         # 
-                
+        torsion_spring_pitch_offset = 0
+        torsion_spring_yaw_offset  = 0                
 
         # Real_motor_rudder_joint. setPosition(0)
         # print('SO3_Attitude_Controller.u',SO3_Attitude_Controller.u)
@@ -953,10 +954,8 @@ while flapper.step(timestep) != -1:
         # else:
             # if (torsion_spring_yaw_offset < -0.3):
                 # torsion_spring_yaw_offset = -0.3
-                
+        StrokeFreq =  13                
         roll_rudder_amplitude = 0
-        torsion_spring_pitch_offset = 0
-        torsion_spring_yaw_offset  = 0
         H_tail_amplitude = -0.2     
         # print('torsion_spring_yaw_offset',torsion_spring_yaw_offset)
     
