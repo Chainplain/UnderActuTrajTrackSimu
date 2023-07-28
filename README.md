@@ -7,6 +7,6 @@ Please use the Flap3DOrgtest.wbt as the world file.
 
 Before you run the simulation in webots, please change the "controller" dir.
 
-## installation
+## Installation
 Please refer to https://github.com/Chainplain/FlappingwingSimu#installation for installation.
 
