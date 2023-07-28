@@ -963,7 +963,7 @@ while flapper.step(timestep) != -1:
     
     # print('Flapper position', Flapper_translation_value)
     
-    K_height = 5
+    # K_height = 5
     
         
     # print('Height:', Flapper_translation_value[1])
