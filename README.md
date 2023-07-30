@@ -1,7 +1,7 @@
 # Flap_Reinforcement_Learning
 
-Since there is only the simulation part is added. 
-The readme remains simple.
+Since only the simulation part is added，
+the readme remains simple.
 
 Please use the Flap3DOrgtest.wbt as the world file.
 
