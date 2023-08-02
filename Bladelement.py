@@ -207,10 +207,10 @@ class BladeAeroCalculator():
     # self.LERT and self.chordD and the Velocities must be updated ahead
 
         rawResultantFlow =  - self.v_r  - (self.v_t - self.v_infi) #( self.Number_of_BladeElements x 3)-dim
-        print('- self.v_t + self.v_infi ', - self.v_t + self.v_infi)
-        print(' self.v_t:', (self.v_t))
+        # print('- self.v_t + self.v_infi ', - self.v_t + self.v_infi)
+        # print(' self.v_t:', (self.v_t))
         # print('self.v_r:', self.v_r)
-        print(' self.v_infi:', (self.v_infi))
+        # print(' self.v_infi:', (self.v_infi))
         # print('shape self.v_infi:', np.shape(self.v_infi))
     # Please note that v_r is different for each bladeElements, thus is a vector. And we know rawResultantFlow is also vector.
         self.last_added_mass_FV        = self.added_mass_FV

@@ -565,7 +565,7 @@ while flapper.step(timestep) != -1:
     RU_bac.CalcEffectiveVelocity()
     RD_bac.CalcEffectiveVelocity()
     rudder_bac.CalcEffectiveVelocity()
-    print('Tail___________')
+    # print('Tail___________')
     tail_bac.CalcEffectiveVelocity()
     
     LU_bac.CalcAoA()
@@ -695,11 +695,12 @@ while flapper.step(timestep) != -1:
     JUSTFOTAILRDEBUG = 1
     
     tail_t_shift_in_local = np.array([tail_bac. X_pos_t, tail_bac. Y_pos_t, 0]).squeeze()
-    print('tail_t_shift_in_local:',tail_t_shift_in_local)
+    # print('tail_t_shift_in_local:',tail_t_shift_in_local)
     
     tail_t_shift_raw      = np.array(np.matmul(np.transpose(tail_Rotation_matrix_VP2W), tail_t_shift_in_local)).squeeze()
-    print('tail_t_shift_raw:',tail_t_shift_raw)
+    # print('tail_t_shift_raw:',tail_t_shift_raw)
     tail_t_shift = np.array(np.matmul(tail_Rotation_matrix, tail_t_shift_raw)).squeeze().tolist()
+    # print('tail_t_shift_raw:', tail_t_shift_raw)
     # LU_drag = np.array(np.sum(rudder_bac. F_t_drag, axis=0)).squeeze()
     # tail_drag_Axis = P2AA(tail_drag).tolist()
     tail_drag_position = (np.array(tail.getPosition()) + np.array(tail_t_shift)).tolist()
@@ -719,6 +720,7 @@ while flapper.step(timestep) != -1:
     rudder_lift_position = tail_drag_position
     
     LU_wing.addForceWithOffset([LU_drag[0],LU_drag[1],LU_drag[2]],[LU_bac.X_pos_t,LU_bac.Y_pos_t,0],False)
+    # location (expressed in the node coordinate system) 
     LD_wing.addForceWithOffset([LD_drag[0],LD_drag[1],LD_drag[2]],[LD_bac.X_pos_t,LD_bac.Y_pos_t,0],False)
     RU_wing.addForceWithOffset([RU_drag[0],RU_drag[1],RU_drag[2]],[RU_bac.X_pos_t,RU_bac.Y_pos_t,0],False)
     RD_wing.addForceWithOffset([RD_drag[0],RD_drag[1],RD_drag[2]],[RD_bac.X_pos_t,RD_bac.Y_pos_t,0],False)
@@ -876,90 +878,24 @@ while flapper.step(timestep) != -1:
     Here_ARG. match_forward_rotation(R_d)
     
     if ( np.mod(RecordCount, Controller_Gap_vs_Simulation_Gap)==0):
-    # ####step attitude
-        # if ( np.mod(RecordCount, slerp)==0):        
-            # Here_ATG. orientation = np.matmul(Flapper_Rotation_matrix_initial,Given_attitude_list[np.mod(Given_attitude_count, 6)],\
-                                # )
-            # Given_attitude_count = Given_attitude_count + 1
-    
-    ###sinusoidal   
-        # omega_1 = 0.5 * np.pi * np.cos(RecordCount * Simulation_Gap * np.pi)
-        # omega_2 = 0.5 * np.pi * np.cos(RecordCount * Simulation_Gap * np.pi )
-        # omega_3 = 0.5 * np.pi * np.cos(RecordCount * Simulation_Gap * np.pi )
-        # Here_ATG. omega = np. mat([[omega_1],[omega_2],[omega_3]])
-        # print('Flapper_pos',Flapper_pos)
-        # print('p_observer:',Here_pos_observer. p_observer)
-        # print('p_d:',p_d) 
-        # print('Here_ATG. orientation:',Here_ATG. orientation)
-       
-        # Here_ATG. march_forward(Here_ATG. orientation, Here_ATG. omega)
-        
-        # K_pitch = 1
-        # K_yaw   = 0.3
-        
-        # if (is_filtered  == 1):
-            # Angle_vel = Angular_velocity_filter. Get_filtered()
-        # else:
-            # Angle_vel =  Flapper_Angular_velocity_current
-        
-        
-        # u_t = Postion_Controller. Calc_u_t( p_d,   Here_pos_observer. p_observer, \
-                                            # v_d,   Here_pos_observer. v_observer, \
-                                            # d_v_d, Here_pos_observer. z_observer,\
-                                            # Flapper_Rotation_current)
-        
-        # print('u_t',u_t)
-        # StrokeFreq =  11 / 9.8* np.linalg.norm (u_t)
-        
-        # StrokeFreq = -K_height * (Flapper_translation_value[1]-1.2) + 10
-        # if (StrokeFreq < 8):
-            # StrokeFreq = 8
-        # if (StrokeFreq > 15):
-            # StrokeFreq = 15
-        
-        # print('StrokeFreq',StrokeFreq)
-        # R_d = Computing_desired_rotation( u_t, Torward_direction, Flight_direction)
-        # Here_ARG. match_forward_angular_velcoity(R_d)
-        # print('R_d', R_d)
-        # print('Here_ARG.R_f', Here_ARG.R_f)
-        # print('Here_ARG.Omega_f', Here_ARG.Omega_f)
-        # ##Omega_static
-        # SO3_Attitude_Controller. Generate_control_signal( Flapper_Rotation_current, Angle_vel,\
-                                         # R_d, Here_ARG.Omega_f)
-        # torsion_spring_pitch_offset =  - K_pitch * SO3_Attitude_Controller.u[1,0]
-        # torsion_spring_yaw_offset   =  K_yaw * SO3_Attitude_Controller.u[2,0]
-        
-        
-
-        # K_roll_mix = 0.5
-        # roll_rudder_amplitude = -K_roll_mix * SO3_Attitude_Controller.u[0,0]
-        # if (roll_rudder_amplitude > 0.8):
-            # roll_rudder_amplitude = 0.8
-        # else:
-            # if (roll_rudder_amplitude < -0.8):
-                # roll_rudder_amplitude = -0.8
-                
-        # 
+    # These values relate to the FWAV mounting.
         torsion_spring_pitch_offset = 0
         torsion_spring_yaw_offset  = 0                
 
-        # Real_motor_rudder_joint. setPosition(0)
-        # print('SO3_Attitude_Controller.u',SO3_Attitude_Controller.u)
-        
-        # if (torsion_spring_pitch_offset >0.6):
-            # torsion_spring_pitch_offset =0.6
-        # else:
-            # if (torsion_spring_pitch_offset < -0.6):
-                # torsion_spring_pitch_offset = -0.6
-                
-        # if (torsion_spring_yaw_offset > 0.3):
-            # torsion_spring_yaw_offset = 0.3
-        # else:
-            # if (torsion_spring_yaw_offset < -0.3):
-                # torsion_spring_yaw_offset = -0.3
+    # These values relate to the FWAV control.
         StrokeFreq =  13                
         roll_rudder_amplitude = 0
-        H_tail_amplitude = -0.2     
+        H_tail_amplitude = -0.1
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         # print('torsion_spring_yaw_offset',torsion_spring_yaw_offset)
     
     
