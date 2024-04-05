@@ -16,5 +16,3 @@ Please use following line in to control the FWAV: (Just change their values.) We
         roll_rudder_amplitude = 0
         H_tail_amplitude = -0.2   
 ```
-## Open loop Test
-![Flap3DOrgtest](https://github.com/Chainplain/Flap_Reinforcement_Learning/assets/13344614/20495fce-6bb9-48cf-a37d-9ed73668ecf9)
