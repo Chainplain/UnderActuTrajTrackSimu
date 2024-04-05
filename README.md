@@ -16,3 +16,8 @@ Please use following line in to control the FWAV: (Just change their values.) We
         roll_rudder_amplitude = 0
         H_tail_amplitude = -0.2   
 ```
+
+## Apology
+Sorry for losing the controller in FTslideControl.py,
+
+However, the data is still provided in Newdata, feel free to use.
