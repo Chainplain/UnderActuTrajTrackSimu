@@ -20,4 +20,4 @@ Please use following line in to control the FWAV: (Just change their values.) We
 ## Apology
 Sorry for losing the controller in FTslideControl.py,
 
-However, the data is still provided in Newdata, feel free to use.
+However, the data are still provided in Newdata, feel free to use.
