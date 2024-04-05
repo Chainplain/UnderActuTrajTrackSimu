@@ -1,4 +1,4 @@
-# Flap_Reinforcement_Learning
+# UnderActuTrajTrackSimu
 
 Since only the simulation part is added，
 the readme remains simple.
